@@ -28,16 +28,16 @@ class Mailing_list extends CI_Controller
 	public function view($id)
 	{// this will show us the data from a single page. 
 		//here we're making data available to out header and footer
-		$this->load->model('Mailing_list_model')->get_id($id); // this loads the model
-		$data['query'] = $this->Mailing_list_model->get_mailing_list(); //this executes the function
+		$this->load->model('Mailing_list_model'); // this loads the model
+		$data['query'] = $this->Mailing_list_model->get_id($id); //this executes the function
 		
 		$data['title'] = "Here is our title tag.";
 		// this refers to the current running object
 		// self refers to the class
 		$data['banner'] = $id;
-		$data['style'] = "cerulian.css";
+		$data['style'] = "cerulean.css";
 		$data['copyright'] = "Here is our title tag.";
-		$data['base_url'] = "Here is our title tag.";
+		$data['base_url'] = base_url();
 		$this->load->view('header',$data);
 		//var_dump($data['query']);
 		$this->load->view('mailing_list/view_mailing_list_detail',$data);
