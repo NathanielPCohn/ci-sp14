@@ -25,13 +25,20 @@ echo validation_errors();
 $first_name = array(
 'name' => 'first_name',
 'id' => 'first_name',
+'value' => set_value('first_name',''),
 );
+/*
+$js = 'onClick="some_function()"';
+echo form_input('username', 'johndoe', $js);
+*/
+$req = 'required="required"';
 echo form_label('First Name','first_name') . ': ';
-echo form_input($first_name) . '<br />';
+echo form_input($first_name,'',$req) . '<br />';
 
 $last_name = array(
 'name' => 'last_name',
 'id' => 'last_name',
+'value' => set_value('last_name',''),
 );
 echo form_label('Last Name','last_name') . ': ';
 echo form_input($last_name) . '<br />';
@@ -39,6 +46,7 @@ echo form_input($last_name) . '<br />';
 $email = array(
 'name' => 'email',
 'id' => 'email',
+'value' => set_value('email',''),
 );
 echo form_label('Email','email') . ': ';
 echo form_input($email) . '<br />';
@@ -46,6 +54,7 @@ echo form_input($email) . '<br />';
 $address = array(
 'name' => 'address',
 'id' => 'address',
+'value' => set_value('address',''),
 );
 echo form_label('Address','address') . ': ';
 echo form_input($address) . '<br />';
@@ -53,6 +62,7 @@ echo form_input($address) . '<br />';
 $state_code = array(
 'name' => 'state_code',
 'id' => 'state_code',
+'value' => set_value('state_code',''),
 );
 echo form_label('State','state_code') . ': ';
 echo form_input($state_code) . '<br />';
@@ -60,6 +70,7 @@ echo form_input($state_code) . '<br />';
 $zip_postal = array(
 'name' => 'zip_postal',
 'id' => 'zip_postal',
+'value' => set_value('zip_postal',''),
 );
 echo form_label('Zip Code','zip_postal') . ': ';
 echo form_input($zip_postal) . '<br />';
@@ -67,6 +78,7 @@ echo form_input($zip_postal) . '<br />';
 $username = array(
 'name' => 'username',
 'id' => 'username',
+'value' => set_value('username',''),
 );
 echo form_label('Username','username') . ': ';
 echo form_input($username) . '<br />';
@@ -74,9 +86,10 @@ echo form_input($username) . '<br />';
 $password = array(
 'name' => 'password',
 'id' => 'password',
+'value' => set_value('password',''),
 );
 echo form_label('Password','password') . ': ';
-echo form_input($password) . '<br />';
+echo form_password($password) . '<br />';
 
 $bio = array(
 'name' => 'bio',
