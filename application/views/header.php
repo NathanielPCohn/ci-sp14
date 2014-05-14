@@ -35,7 +35,11 @@
 					echo anchor('mailing_list/add', 'Add'); 
 				?>
 			</li>
-			<li><a href="#" title="">Other Link</a></li>
+			<li>
+				<?php 
+					echo anchor('directions', 'Directions'); 
+				?>
+			</li>
 			<li><a href="#" title="">Other Link</a></li>
           </ul>
         </div>
