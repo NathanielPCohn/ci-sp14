@@ -6,6 +6,7 @@ class Directions extends CI_Controller
 	function __construct(){
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->model('Directions_model');
 	}//end constructor
 	
 	public function index()
@@ -49,14 +50,21 @@ class Directions extends CI_Controller
 			$this->load->view('footer',$data);			
 			
 		}else{//insert data
-			$post = array(
-				'address'=> $this->input->post('address'),
-				'latitude' => $this->input->post('lat'),
-				'longitude' => $this->input->post('lng'),
-			);
+			$post = $this->input->post('address');
+			$post = urlencode($post);
 			
-			$this->Directions_model->getLocation($post[address]);
-			echo 'Data inserted';
+			$loc = Directions_model::getLocation($post);
+			
+			$lat = $loc['lat'];
+			$lng = $loc['lng'];
+			
+			
+			$data['dLat'] = $loc['lat'];
+			$data['dLng'] = $loc['lng'];
+			$this->load->view('directions/view_map',$data);
+			
+			$dLat = $data['dLat'];
+			$dLng = $data['dLng'];
 			
 		}	
 	}//end insert
