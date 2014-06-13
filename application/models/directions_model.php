@@ -10,7 +10,7 @@ class Directions_model extends CI_Model
 	
 	static private $url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=";
 
-    static public function getLocation($address){
+    static private function getLocation($address){
         $url = self::$url.urlencode($address);
         
         $resp_json = self::curl_file_get_contents($url);
@@ -34,6 +34,13 @@ class Directions_model extends CI_Model
         if ($contents) return $contents;
             else return FALSE;
     }
+	
+	static public function getDestination($address) {
+			$address = urlencode($address);
+			$loc = Directions_model::getLocation($address);
+			
+			return $loc;
+	}
 }
 
 ?>

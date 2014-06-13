@@ -51,21 +51,8 @@ class Directions extends CI_Controller
 			
 		}else{//insert data
 			$post = $this->input->post('address');
-			$post = urlencode($post);
-			
-			$loc = Directions_model::getLocation($post);
-			
-			$lat = $loc['lat'];
-			$lng = $loc['lng'];
-			
-			
-			$data['dLat'] = $loc['lat'];
-			$data['dLng'] = $loc['lng'];
+			$data['location'] = Directions_model::getDestination($post);
 			$this->load->view('directions/view_map',$data);
-			
-			$dLat = $data['dLat'];
-			$dLng = $data['dLng'];
-			
 		}	
 	}//end insert
 }
