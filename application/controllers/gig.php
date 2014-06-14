@@ -11,14 +11,28 @@ class Gig extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->model('Gig_model');
+		$this->load->library('pagination');
 	}
 	
 	public function index()
 	{
-		$data['query'] = $this->Gig_model->get_gig();
+		$config['base_url'] = base_url() . 'index.php/gig/index';
+		$config['total_rows'] = $this->Gig_model->num_records();
+		$config['per_page'] = 3;
+		$config['num_links'] = 20;
+		$config['uri_segment'] = 3;
+		$config['full_tag_open'] = '<div id="pagination">';
+		$config['full_tag_close'] = '</div>';
+		
+		$this->pagination->initialize($config);
+		
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		
+		$data['query'] = $this->Gig_model->get_gig($config['per_page'], $page);
 		$data['title'] = 'Gig Central';
 		$data['banner'] = 'Welcome to Gig Central';
 		$data['copyright'] = '&copy; Nathaniel Cohn';
+		$data['links'] = $this->pagination->create_links();
 		
 		$this->load->view('header', $data);
 		$this->load->view('gig/view_gig', $data);
@@ -159,12 +173,12 @@ class Gig extends CI_Controller {
 		
 		if (!$resp->is_valid) {
 
-			$this->form_validation->set_message('captcha_check', 'The reCAPTCHA wasn\’t entered correctly. Go back and try it again.');
+			$this->form_validation->set_message('captcha_check', 'The reCAPTCHA wasn\ï¿½t entered correctly. Go back and try it again.');
 			return FALSE;
 
 			// What happens when the CAPTCHA was entered incorrectly
-			//die (“The reCAPTCHA wasn’t entered correctly. Go back and try it again.” .
-			//”(reCAPTCHA said: ” . $resp->error . “)”);
+			//die (ï¿½The reCAPTCHA wasnï¿½t entered correctly. Go back and try it again.ï¿½ .
+			//ï¿½(reCAPTCHA said: ï¿½ . $resp->error . ï¿½)ï¿½);
 
 		} else {
 			return TRUE;

@@ -16,15 +16,21 @@ class Gig_model extends CI_Model {
 		return FALSE;
 	}
 	
-	public function get_gig()
+	public function get_gig($limit, $start)
 	{
-		return $this->db->get('gig_table');
+		$query = $this->db->get('gig_table', $limit, $start);
+		
+		return $query;
 	}
 	
 	public function get_id($id)
 	{
 		$this->db->where('id', $id);
 		return $this->db->get('gig_table');
+	}
+	
+	public function num_records() {
+		return $this->db->count_all('gig_table');
 	}
 }
 ?>
